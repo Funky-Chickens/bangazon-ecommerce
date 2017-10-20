@@ -1,0 +1,14 @@
+form#signin(name="signin" method="post" action="/register")
+  label(for="first_name") First name
+  input.text(id="first_name" name="first_name" type="text")
+  label(for="last_name") Last name
+  input.text(name="last_name" type="text")
+  label(for="username") Username
+  input.text(name="username" type="text")
+  label(for="email") Email Address
+  input.text(name="email" type="text")
+  label(for="password") Password
+  input(name="password" type="password")
+  label(for="confirmation") Confirmation
+  input(name="confirmation" type="password")
+  input.btn(type="submit" value="Sign In")
