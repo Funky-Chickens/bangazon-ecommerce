@@ -1,0 +1,9 @@
+{
+    "orders": [
+      {
+        "buyer_id": 1,
+        "account": 2445,
+        "payment_name": "visa"
+      }
+    ]
+  }

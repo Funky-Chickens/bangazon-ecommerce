@@ -1,0 +1,18 @@
+{
+    "users": [
+      {
+        "first_name": "Jim",
+        "last_name": "Smith",
+        "username": "jsmith",
+        "phone": "123-555-5555",
+        "street_address": "100 Main St.",
+        "city": "Nashville",
+        "state": "TN",
+        "zip": 12345,
+        "email": "jsmith@j.com",
+        "password": "password",
+        "start_date": "2017-12-25T23:59:03.244Z",
+        "last_login": "2017-12-25T23:59:03.244Z"
+      }
+    ]
+  }
