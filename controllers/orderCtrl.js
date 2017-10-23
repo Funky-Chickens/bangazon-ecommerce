@@ -1,9 +1,10 @@
 'use strict'
 
-getOrder
+getOrder //(view cart)
 addOrder
-updateOrder
-deleteOrder
+updateOrder //(add payment id to order)
 
+deleteOrder
 deleteProductOrder
+
 addProductOrder //(put product in cart here?)
