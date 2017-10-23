@@ -21,11 +21,32 @@ module.exports = {
       username: {
         type: Sequelize.TEXT
       },
+      phone: {
+        type: Sequelize.STRING
+      },
+      street_address: {
+        type: Sequelize.STRING
+      },
+      city: {
+        type: Sequelize.STRING
+      },
+      state: {
+        type: Sequelize.STRING
+      },
+      zip: {
+        type: Sequelize.INTEGER
+      },
       email: {
         type: Sequelize.STRING
       },
       password: {
         type: Sequelize.STRING
+      },
+      start_date: {
+        type: Seqeuelize.DATE
+      },
+      last_login: {
+        type: Sequelize.DATE
       }
     });
   },
