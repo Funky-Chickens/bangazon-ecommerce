@@ -7,6 +7,38 @@
         "description": "test",
         "quantity_avail": 3,
         "seller_id": 1
+      },
+      {
+        "category_id": 2,
+        "price": 5.50,
+        "name": "Fake Poop",
+        "description": "looks just like the real thing!",
+        "quantity_avail": 8,
+        "seller_id": 1
+      },
+      {
+        "category_id": 3,
+        "price": 20000.00,
+        "name": "Caesar's Skull",
+        "description": "It's totally legit",
+        "quantity_avail": 0,
+        "seller_id": 3
+      },
+      {
+        "category_id": 4,
+        "price": 20.99,
+        "name": "A Bubble Maker",
+        "description": "Makes Bubbles",
+        "quantity_avail": 44,
+        "seller_id": 4
+      },
+      {
+        "category_id": 5,
+        "price": 14.00,
+        "name": "Lawn Gnome",
+        "description": "Warning: Comes to life at midnight. Keep your distance.",
+        "quantity_avail": 3,
+        "seller_id": 5
       }
     ]
   }
