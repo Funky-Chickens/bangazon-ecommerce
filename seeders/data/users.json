@@ -13,6 +13,62 @@
         "password": "password",
         "start_date": "2017-12-25T23:59:03.244Z",
         "last_login": "2017-12-25T23:59:03.244Z"
+      },
+      {
+        "first_name": "Jimbo",
+        "last_name": "Smiterh",
+        "username": "jsmith69",
+        "phone": "123-545-4555",
+        "street_address": "100 Maingg St.",
+        "city": "Saint Paul",
+        "state": "MN",
+        "zip": 55116,
+        "email": "jsmit22h@je.com",
+        "password": "computer",
+        "start_date": "2017-12-26T23:59:03.244Z",
+        "last_login": "2017-12-26T23:59:03.244Z"
+      },
+      {
+        "first_name": "Jemima",
+        "last_name": "Aunt",
+        "username": "ajemims",
+        "phone": "153-544-5555",
+        "street_address": "100 syrup St.",
+        "city": "Southron",
+        "state": "GA",
+        "zip": 12315,
+        "email": "ajemi@j.com",
+        "password": "passicode",
+        "start_date": "2016-12-25T23:59:03.244Z",
+        "last_login": "2016-12-25T23:59:03.244Z"
+      },
+      {
+        "first_name": "jeremy",
+        "last_name": "blagandaas",
+        "username": "daaaasgud",
+        "phone": "123-555-5244",
+        "street_address": "144 Tyrannosauras St.",
+        "city": "Pittsburgh",
+        "state": "TX",
+        "zip": 16525,
+        "email": "daasgud@ja.com",
+        "password": "pluffer",
+        "start_date": "2017-11-25T23:59:03.244Z",
+        "last_login": "2017-12-25T23:59:03.244Z"
+      },
+      {
+        "first_name": "ashley",
+        "last_name": "bo-bashley",
+        "username": "fifafofashley",
+        "phone": "144-555-5555",
+        "street_address": "100 eenieweenie St.",
+        "city": "Crapola",
+        "state": "MI",
+        "zip": 55621,
+        "email": "ashbo@jooooy.com",
+        "password": "jnjnjnjn",
+        "start_date": "2016-12-25T23:59:03.244Z",
+        "last_login": "2017-11-25T23:59:03.244Z"
       }
     ]
   }
