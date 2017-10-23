@@ -1,7 +1,19 @@
 {
     "categories": [
       {
-        "name": "Lenovo"
+        "name": "Jewelry"
+      },
+      {
+        "name": "Tools"
+      },
+      {
+        "name": "Computers"
+      },
+      {
+        "name": "Toys"
+      },
+      {
+        "name": "Clothing"
       }
     ]
   }
