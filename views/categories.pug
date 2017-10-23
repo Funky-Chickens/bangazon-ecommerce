@@ -1,0 +1,11 @@
+extends index.pug
+
+block content
+    
+    ul
+        each category in cats
+            - url = `/products/?query`;
+            li(class='lists'): a(href=url) #{category.name}
+
+
+//show categories with 1st 3 products in category and count of the # of products in it

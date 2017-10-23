@@ -3,9 +3,9 @@ html
   head
     title Bangazon!
   body
-    include partials/nav.pug
-    h1 Bangazon!
-    h2 #{globalWow}
+    include nav.pug
+    //- h1 Bangazon!
+    //- h2 #{globalWow}
 
   block content
     button#showLogin login
@@ -13,5 +13,3 @@ html
 
     script
       include ../client/client.js
-
-//show categories with 1st 3 products in category and count of the # of products in it

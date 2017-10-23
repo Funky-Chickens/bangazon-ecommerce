@@ -43,7 +43,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       start_date: {
-        type: Seqeuelize.DATE
+        type: Sequelize.DATE
       },
       last_login: {
         type: Sequelize.DATE
