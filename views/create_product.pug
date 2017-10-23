@@ -1,5 +1,19 @@
 extends index.pug
 
 block content
-
-//create a new product for a seller
+    form(method='POST', action=`/product/`)
+        label(for="product-category") Product Category:
+        select(name="product-category")
+            option VariablesToBeLoopedOver
+        br
+        label(for="name") Name: 
+        input(type="number", name="name", required)
+        br
+        label(for="price") Price:
+        input(type="number", name="price", required)
+        br
+        label(for="description") Description: 
+        input(type="number", name="description", required)
+        br
+        label(for="quantity_avail") Quantity:
+        input(type="number", name="quantity_avail", required)
