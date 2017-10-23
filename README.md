@@ -8,13 +8,13 @@ This will get the project up and working on your local machine.
 
 - First, clone the project using this command: ```git clone git@github.com:Funky-Chickens/bangazon-ecommerce.git```
 
-Then run ```npm install``` to install all of the dependencies listed below.
+- Then run ```npm install``` to install all of the dependencies listed below.
 
-To set up the database, run ```sequelize db:migrate```.
+- To set up the database, run ```sequelize db:migrate```.
 
-Then seed the database with the ```sequelize db:seed:all``` command.
+- Then seed the database with the ```sequelize db:seed:all``` command.
 
-To run the project, run ```npm start``` on the command line and go to localhost:4000 in your browser.
+- To run the project, run ```npm start``` on the command line and go to localhost:4000 in your browser.
 
 ### Dependencies
 
