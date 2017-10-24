@@ -9,7 +9,7 @@ let bodyParser = require('body-parser');
 const flash = require('express-flash');
 
 require('dotenv').config();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 
 app.use(methodOverride('_method')); //method override for use with forms
 app.use(express.static(__dirname + '/public'));//give access to public folder (styles and jquery)

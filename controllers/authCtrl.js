@@ -7,6 +7,7 @@ module.exports.displayRegister = (req, res) => {
 };
 
 module.exports.register = (req, res, next) => {
+    console.log(req.body);
   if (req.body.password === req.body.confirmation) {
     console.log('Trying to register new user!!!!!');
 
