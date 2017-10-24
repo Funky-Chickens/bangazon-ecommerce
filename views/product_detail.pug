@@ -3,6 +3,6 @@ extends index.pug
 block content
 
     ul(id="detailProd")
-        li(class="singleProdList") Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: #{price}
+        li(class="singleProdList" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
 
-    button(type="submit") Add To Cart
+    button(type="submit" id="addToCart") Add To Cart

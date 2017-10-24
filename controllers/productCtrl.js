@@ -7,6 +7,7 @@ module.exports.getProductDetail = (req, res, next)=>{
     Product.findById(parseInt(req.params.id))
     .then( (foundProd) =>{
         res.render('product_detail', {
+            id:foundProd.dataValues.id,
             name: foundProd.dataValues.name,
             description:foundProd.dataValues.description,
             price:foundProd.dataValues.price,
