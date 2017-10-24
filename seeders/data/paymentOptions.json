@@ -7,22 +7,22 @@
       },
       {
         "buyer_id": 2,
-        "account": 24453469,
+        "account": 244534,
         "payment_name": "MasterCard"
       },
       {
         "buyer_id": 3,
-        "account": 24490383938475,
+        "account": 24490,
         "payment_name": "Discover"
       },
       {
         "buyer_id": 4,
-        "account": 3495702934723048,
+        "account": 3490,
         "payment_name": "American Express"
       },
       {
         "buyer_id": 5,
-        "account": 2392572957382595,
+        "account": 23925,
         "payment_name": "PlusCard"
       }
     ]

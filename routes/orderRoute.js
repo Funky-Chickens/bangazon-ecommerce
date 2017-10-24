@@ -15,6 +15,6 @@ router.delete('/order/:id', deleteOrder);
 
 router.post('/order/:id', addProductOrder);
 
-outer.delete('/order/:id', deleteProductOrder);
+router.delete('/order/:id', deleteProductOrder);
 
 module.exports = router;
