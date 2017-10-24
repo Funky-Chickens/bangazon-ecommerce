@@ -5,6 +5,6 @@ const router = Router();
 
 const { getCategories } = require('../controllers/categoryCtrl');
 
-router.get('/', getCategories);
+// router.get('/', getCategories);
 
 module.exports = router;

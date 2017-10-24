@@ -4,3 +4,7 @@
 // addProduct
 // getProductsDetail
 
+module.exports.renderProductCreateForm = (req, res, next) => {
+    res.render('create_product')
+}
+
