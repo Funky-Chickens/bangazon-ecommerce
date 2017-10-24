@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     buyer_id: DataTypes.INTEGER,
     account: DataTypes.INTEGER,
     payment_name: DataTypes.STRING
-  });
+  }, {timestamps: false});
   
   PaymentOption.classMethods = {
       associate: function(models) {

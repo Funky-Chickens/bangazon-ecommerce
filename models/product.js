@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     quantity_avail: DataTypes.INTEGER,
     seller_id: DataTypes.INTEGER
-  });
+  }, {timestamps: false});
   
   Product.classMethods = {
       associate: function(models) {
