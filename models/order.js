@@ -5,17 +5,17 @@ module.exports = (sequelize, DataTypes) => {
     payment_id: DataTypes.INTEGER,
     order_date: DataTypes.DATE
   });
-  
+
   Order.classMethods = {
       associate: function(models) {
-        belongsTo(models.User, { 
+        Order.belongsTo(models.User, {
           foreignKey: 'user_id',
           as: "Buyer" });
-        belongsTo(models.PaymentOption, { 
+        Order.belongsTo(models.PaymentOption, {
           foreignKey: 'payment_id',
           as: "Payment_id" });
-        hasMany(models.ProductOrder, {
-          foreignKey: 'order_id'
+        Order.belongsToMany(models.Product, {
+          through:'ProductOrders'
         });
       }
     }

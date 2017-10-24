@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      category_id: {
-        type: Sequelize.INTEGER
-      },
       price: {
         type: Sequelize.INTEGER
       },
@@ -21,9 +18,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       quantity_avail: {
-        type: Sequelize.INTEGER
-      },
-      seller_id: {
         type: Sequelize.INTEGER
       }
     });
