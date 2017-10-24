@@ -1,11 +1,14 @@
 extends index.pug
 
 block content
-    
+
+    h1 Categories
+        
     ul
         each category in cats
-            - url = `/products/?query`;
+            - url = `/products`;
             li(class='lists'): a(href=url) #{category.name}
+            
 
 
-//show categories with 1st 3 products in category and count of the # of products in it
+//- show categories with 1st 3 products in category and count of the # of products in it
