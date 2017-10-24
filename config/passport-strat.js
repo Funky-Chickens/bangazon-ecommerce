@@ -18,7 +18,8 @@ const RegistrationStrategy = new Strategy(
   {
     usernameField: 'email',
     passwordField: 'password',
-    passReqToCallback: true // allows us to pass back the entire request to the callback,
+    passReqToCallback: true,
+     // allows us to pass back the entire request to the callback,
     // which is particularly useful for signing up.
   },
   // arg2 callback, handle storing a user's details.
@@ -39,19 +40,27 @@ const RegistrationStrategy = new Strategy(
         console.log('user found, oops');
 
         return done(null, false, {
-          message: 'That email is already taken'
+          message: 'That account is already taken'
         });
       } else {
           console.log('in the else');
           const userPassword = generateHash(password); //function we defined above
           const data =
             // values come from the req.body, added by body-parser when register form request is submitted
+            // properties listed below need to be matched up with the values in the PUG form. 
             {
               email,
               password: userPassword,
               username: req.body.username,
               first_name: req.body.first_name,
-              last_name:  req.body.last_name
+              last_name:  req.body.last_name,
+              phone: req.body.phone,
+              street_address: req.body.street_address,
+              city: req.body.city,
+              state: req.body.state,
+              zip: req.body.zip,
+              start_date: null,
+              last_login: null 
             };
           // create() is a Sequelize method
           User.create(data).then( (newUser, created) => {
@@ -92,11 +101,6 @@ const LoginStrategy = new Strategy(
       if (!user) {
         return done(null, false, {
           message: 'Can\'t find a user with those credentials. Please try again'
-        });
-      }
-      if (req.body.username != user.username ) {
-        return done(null, false, {
-          message: 'Wrong username. Please try again'
         });
       }
       if (!isValidPassword(user.password, password)) {

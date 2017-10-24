@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
     password: DataTypes.STRING,
     start_date: DataTypes.DATE,
     last_login: DataTypes.DATE
-  });
+  }, {timestamps: false});
   
   User.classMethods = {
       associate: function(models) {
