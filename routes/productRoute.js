@@ -9,6 +9,6 @@ const { getProductList, addProduct, getProductDetail, renderProductCreateForm } 
 
 router.get('/product/create', renderProductCreateForm);
 
-// router.get('/product/:id', getProductDetail);
+router.get('/product/:id', getProductDetail);
 
 module.exports = router;

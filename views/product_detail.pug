@@ -2,4 +2,7 @@ extends index.pug
 
 block content
 
-//show product detail with option to add to order(cart)
+    ul(id="detailProd")
+        li(class="singleProdList") Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: #{price}
+
+    button(type="submit") Add To Cart
