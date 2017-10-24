@@ -15,6 +15,7 @@ const { getOrder, addOrder, updateOrder, deleteOrder, addProductOrder, deletePro
 
 // router.post('/order/:id', addProductOrder);
 
-// outer.delete('/order/:id', deleteProductOrder);
+
+// router.delete('/order/:id', deleteProductOrder);
 
 module.exports = router;
