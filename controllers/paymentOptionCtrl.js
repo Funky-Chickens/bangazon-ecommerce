@@ -1,5 +1,5 @@
 'use strict'
 
-getPaymentOption
-addPaymentOption
-deletePaymentOption
+// getPaymentOption
+// addPaymentOption
+// deletePaymentOption

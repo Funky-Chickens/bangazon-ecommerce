@@ -1,4 +1,4 @@
 'use strict'
 
-getUserDetails
-updateUser
+// getUserDetails
+// updateUser

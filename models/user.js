@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'user_id'
         });
         hasMany(models.Product, {
-          foreignKey: 'user_id'
+          foreignKey: 'user_id',
           as: 'Seller_id'
         });
       }

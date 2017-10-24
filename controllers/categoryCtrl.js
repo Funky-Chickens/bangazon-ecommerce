@@ -1,6 +1,6 @@
 'use strict'
 
-getCategories //(with 1st 3 products and count of products in category)
+// getCategories //(with 1st 3 products and count of products in category)
 
 module.exports.getCategories = (req, res, next) => {
     const { Categories } = req.app.get('models');
