@@ -8,6 +8,7 @@ const { getProductList, addProduct, getProductDetail, renderProductCreateForm } 
 // router.get('/products/?query', getProductList);
 
 router.get('/product/create', renderProductCreateForm);
+router.post('/product', addProduct);
 
 // router.get('/product/:id', getProductDetail);
 

@@ -1,4 +1,5 @@
 'use strict';
+
 const passport = require('passport');
 
 // creating new users
