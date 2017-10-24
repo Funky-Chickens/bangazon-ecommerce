@@ -40,7 +40,7 @@ const RegistrationStrategy = new Strategy(
         console.log('user found, oops');
 
         return done(null, false, {
-          message: 'That email is already taken'
+          message: 'That account is already taken'
         });
       } else {
           console.log('in the else');
@@ -101,11 +101,6 @@ const LoginStrategy = new Strategy(
       if (!user) {
         return done(null, false, {
           message: 'Can\'t find a user with those credentials. Please try again'
-        });
-      }
-      if (req.body.username != user.username ) {
-        return done(null, false, {
-          message: 'Wrong username. Please try again'
         });
       }
       if (!isValidPassword(user.password, password)) {
