@@ -47,6 +47,7 @@ const RegistrationStrategy = new Strategy(
           const userPassword = generateHash(password); //function we defined above
           const data =
             // values come from the req.body, added by body-parser when register form request is submitted
+            // properties listed below need to be matched up with the values in the PUG form. 
             {
               email,
               password: userPassword,
