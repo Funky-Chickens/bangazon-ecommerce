@@ -1,0 +1,29 @@
+
+body {
+   list-style: none;
+}
+
+.column1 {
+    background-color: red;
+}
+
+.column2 {
+    background-color: orange;
+}
+
+.column3 {
+    background-color: blue;
+}
+
+.nav-link {
+    display: inline;
+}
+
+.loginForm {
+        position: fixed; /* or absolute */
+        top: 33%;
+        left: 33%;
+}
+.logout {
+float: right;
+}
