@@ -1,6 +1,6 @@
 'use strict'
 
-module.exports.getOrder = (req, res, next) => {
+module.exports.getOrder = (req, res, next) => {//-gm/jmr
     console.log("hiya!", req.session.passport.user)
     const {Order, Product} = req.app.get('models');
     Order.findOne({
@@ -18,7 +18,7 @@ module.exports.getOrder = (req, res, next) => {
 }
 
 //post new order to db
-module.exports.addOrder = (req, res, next) =>{
+module.exports.addOrder = (req, res, next) =>{ //-gm
     console.log("hello from add order");
     const {Order, Product} = req.app.get('models');
     let date= new Date();
@@ -31,7 +31,7 @@ module.exports.addOrder = (req, res, next) =>{
       })
       .then( (result) => {
         console.log("result of add order to order table", result);//needs to return the lastID of what was posted so we can use that value?
-         res.status(200); //redirect here to /order?
+        res.redirect(`/order/${result.dataValues.id}`); //redirect here to /order/:id for productorders join table to be updated?
       })
       .catch( (err) => {
          res.status(500).json(err)
@@ -40,19 +40,19 @@ module.exports.addOrder = (req, res, next) =>{
 }
 
 //put
-module.exports.updateOrder = (req, res, next)=>{
+module.exports.updateOrder = (req, res, next)=>{ //-gm
     const {Order, Product} = req.app.get('models');
     console.log("hello from update order");
     Order.update({
         buyer_id:req.session.passport.user.id,
-        payment_id: req.body.payment_id,//origin of payment info?
+        payment_id: req.body.payment_id,
         order_date: req.body.order_date,
         createdAt:null,
         updatedAt:null
     }, {where:{id: req.params.id}})
     .then((order)=>{
         console.log("order in update order", order);
-        res.status(200).send();
+        res.status(200).send();//redirect to do join table?
       })
       .catch( (err) => {
         next(err);
@@ -62,5 +62,10 @@ module.exports.updateOrder = (req, res, next)=>{
 
 // deleteProductOrder
 module.exports.addProductOrder = (req, res, next) => {
-    
+    console.log("hiya from addProductOrder")
+    const {Order, Product} = req.app.get('models');
+    console.log("order id? inside add product order", req.params.id)
+    console.log("prodObj inside add productorder", prodObj)
+
+
 } //(put product in cart here?)

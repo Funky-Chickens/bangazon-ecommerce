@@ -6,7 +6,6 @@ var session = require('express-session');
 // getProductsList //(also need to get by category & based on search & get a count)
 // addProduct
 module.exports.getProductDetail = (req, res, next)=>{
-    console.log("user?", req.session.passport.user);
     const {Product, Order} = req.app.get('models');
     let prod;//make product data available throughout function
     Product.findById(parseInt(req.params.id))//find one product by id passed in click event -gm
@@ -33,7 +32,6 @@ module.exports.getProductDetail = (req, res, next)=>{
         })
     })
 }
-
 
 module.exports.renderProductCreateForm = (req, res, next) => {
     const { Category } = req.app.get('models');
