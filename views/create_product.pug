@@ -4,9 +4,9 @@ block content
     form(method='POST', action=`/product`)
 
         label(for="productCategory") Product Category:
-        select(name="productCategory")
+        select(name="productCategory", required)
 
-            option ------
+            option
             each cat in cats
                 option #{cat.name}
         br
