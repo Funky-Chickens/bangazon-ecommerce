@@ -5,7 +5,7 @@ const router = Router();
 
 const { getOrder, addOrder, updateOrder, deleteOrder, addProductOrder, deleteProductOrder } = require('../controllers/orderCtrl');
 
-// router.get('/order/:id', getOrder);
+router.put('/order/:id', getOrder);
 
 // router.post('/order', addOrder);
 
@@ -13,7 +13,7 @@ const { getOrder, addOrder, updateOrder, deleteOrder, addProductOrder, deletePro
 
 // router.delete('/order/:id', deleteOrder);
 
-router.post('/order/:id', addProductOrder);//joins with pug form, product/order controllers, and main.js click event
+// router.post('/order/:id', addProductOrder);//joins with pug form, product/order controllers, and main.js click event
 
 
 // router.delete('/order/:id', deleteProductOrder);

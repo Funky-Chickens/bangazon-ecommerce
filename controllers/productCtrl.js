@@ -5,25 +5,31 @@ var session = require('express-session');
 
 // getProductsList //(also need to get by category & based on search & get a count)
 // addProduct
-module.exports.getProductDetail = (req, res, next)=>{
-    const {Product, Order} = req.app.get('models');  //require in order model too? look at empCtrl.
-    Product.findById(parseInt(req.params.id))
+module.exports.getProductDetail = (req, res, next)=>{ 
+    console.log("user?", req.session.passport.user);
+    const {Product, Order} = req.app.get('models');
+    let prod;//make product data available throughout function
+    Product.findById(parseInt(req.params.id))//find one product by id passed in click event -gm
     .then( (foundProd) =>{
-        console.log(foundProd.dataValues)
+        prod=foundProd.dataValues;
+        console.log("prod", prod)
+        return Order.findOne({
+            where:{
+                buyer_id:req.session.passport.user.id
+        }})
+    .then((oneOrder)=>{
+        console.log("oneOrder?", oneOrder); 
         res.render('product_detail', {
-            id:foundProd.dataValues.id,
-            name: foundProd.dataValues.name,
-            description:foundProd.dataValues.description,
-            price:foundProd.dataValues.price,
-            quantity_avail: foundProd.dataValues.quantity_avail
+            id:prod.id,
+            name: prod.name,
+            description:prod.description,
+            price:prod.price,
+            quantity_avail: prod.quantity_avail,
+            order_id: oneOrder ? oneOrder.dataValues.id : oneOrder //to pass along the order id for the pug template conditional
+            //if the order id exists, use first condition, if not, use second in pug
+            //-jmr, cm
           });
-        Order.getOrder(session.passport)
-        .then((oneOrder)=>{
-            if (oneOrder){
-                console.log(oneOrder);//check to see if it has a payment type
-            }else{
 
-            }
         })
     })
 }

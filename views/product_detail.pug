@@ -1,7 +1,14 @@
 extends index.pug
 
 block content
-    form(action="/order/#{openOrder.order_id}", method="post")
-        ul(id="detailProd")
-            li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
-            button(type="submit" id="addToCart") Add To Cart
+    .singleProduct
+        if order_id
+            form(action="/order/#{order_id}", method="put")
+                ul(id="detailProd")
+                    li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
+                    button(type="submit" id="addToCart") Add To Cart
+        else
+            form(action="/order/", method="post")
+                ul(id="detailProd")
+                    li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
+                    button(type="submit" id="addToCart") Add To Cart

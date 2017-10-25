@@ -6,8 +6,8 @@ const router = Router();
 const { getProductList, addProduct, getProductDetail, renderProductCreateForm } = require('../controllers/productCtrl');
 // router.get('/products/?query', getProductList);
 
-router.get('/product/create', renderProductCreateForm);
-router.post('/product', addProduct);
+router.get('/products/create', renderProductCreateForm);
+router.post('/products', addProduct);
 
 router.get('/products/:id', getProductDetail);
 
