@@ -1,22 +1,19 @@
-h1(class="navTitle padBot") 
-    a(href='/') Bangazon Shopping
-    div(class="row")
-    ul(class="nav navbar fixed-top")
-        li(class="nav-item col-md-2") 
-            a(class="nav-link active" href="/categories") Categories
-        li(class="nav-item col-md-2")
-            a(class="nav-link" href="/products") Product Search
-        li(class="nav-item col-md-2")
-            a(class="nav-link" href="/product/create") Sell a Product
-        li(class="nav-item col-md-2")
-            a(class="nav-link" href="/user/:id") My Settings
-        li(class="nav-item col-md-2")
-            a(class="nav-link" href="/user/:id") View Cart
-        li(class="nav-item col-md-2")
-            a(class="nav-link" href="/login") Login
-        li(class="nav-item col-md-2")
-            a(class="nav-link" href="/register") Register    
-        if session.passport
-            span #{session.passport.user.first_name}
-            form(method="POST")
-                button(type="submit" formaction="/logout") logout
+div(class="row")
+    nav(class="nav navbar fixed-top")
+        div(class="col-md-4")
+                a(class="nav-link active" href="/") Categories
+                a(class="nav-link" href="/products") All Products
+        div(class="col-md-4")
+                form
+                    input(type="text" placeholder="Search for a prouct" name="search")
+                    button(class="nav-link" formaction="/products") SEARCH
+        div(class="col-md-4")
+            if !session.passport
+                a(class="nav-link active" href="/login") Login
+                a(class="nav-link active" href="/register") Register    
+            if session.passport
+                a(class="nav-link" href="/user/:id") View Cart
+                a(class="nav-link active" href="products/create") Sell
+                span Welcome, #{session.passport.user.first_name}!
+                form(method="POST")
+                    button(class="logout" type="submit" formaction="/logout") logout
