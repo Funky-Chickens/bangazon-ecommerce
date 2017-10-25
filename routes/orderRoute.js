@@ -13,7 +13,7 @@ const { getOrder, addOrder, updateOrder, deleteOrder, addProductOrder, deletePro
 
 // router.delete('/order/:id', deleteOrder);
 
-// router.post('/order/:id', addProductOrder);
+router.post('/order/:id', addProductOrder);//joins with pug form, product/order controllers, and main.js click event
 
 
 // router.delete('/order/:id', deleteProductOrder);

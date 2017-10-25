@@ -1,9 +1,13 @@
 'use strict'
 
-// getOrder
+module.exports.getOrder = (req, res, next) => {
+
+}
 // addOrder
 // updateOrder
 // deleteOrder
 
 // deleteProductOrder
-// addProductOrder //(put product in cart here?)
+module.exports.addProductOrder = (req, res, next) => {
+
+} //(put product in cart here?)

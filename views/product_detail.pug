@@ -1,8 +1,7 @@
 extends index.pug
 
 block content
-
-    ul(id="detailProd")
-        li(class="singleProdList" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
-
-    button(type="submit" id="addToCart") Add To Cart
+    form(action="/order/#{openOrder.order_id}", method="post")
+        ul(id="detailProd")
+            li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
+            button(type="submit" id="addToCart") Add To Cart
