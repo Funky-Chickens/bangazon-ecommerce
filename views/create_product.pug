@@ -1,19 +1,25 @@
 extends index.pug
 
 block content
-    form(method='POST', action=`/product/`)
-        label(for="product-category") Product Category:
-        select(name="product-category")
-            option VariablesToBeLoopedOver
+    form(method='POST', action=`/product`)
+
+        label(for="productCategory") Product Category:
+        select(name="productCategory")
+
+            option ------
+            each cat in cats
+                option #{cat.name}
         br
         label(for="name") Name: 
-        input(type="number", name="name", required)
+        input(type="string", name="name", required)
         br
         label(for="price") Price:
-        input(type="number", name="price", required)
+        input(type="number", step="0.01" name="price", required)
         br
         label(for="description") Description: 
-        input(type="number", name="description", required)
+        input(type="string", name="description", required)
         br
         label(for="quantity_avail") Quantity:
         input(type="number", name="quantity_avail", required)
+
+        button(type="submit") Submit
