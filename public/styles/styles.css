@@ -27,3 +27,9 @@ body {
 .logout {
 float: right;
 }
+
+.createProduct{
+    position: fixed; /* or absolute */
+    top: 33%;
+    left: 33%;
+}
