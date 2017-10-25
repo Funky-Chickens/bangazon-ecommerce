@@ -7,7 +7,7 @@ module.exports.getCategories = (req, res, next) => {
   Category.findAll(
     {
       include: [{
-        model: Product, limit: 3
+        model: Product
       }]
     }) 
   .then( (categories) => {

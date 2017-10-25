@@ -1,14 +1,23 @@
 extends index.pug
 
 block content
-    <br>
-    h1 Categories
-        
-    ul
-        each category in categories
-            h1 #{category.name} (#{category.Products.length})
-            each product in category.Products
-                li= product.name
+    .createProd
+        h1 Categories
+            
+        ul
+            each category in categories
+                h2 #{category.name} (#{category.Products.length})
+                if category.Products.length == 0
+                    li No Products in this Category at this time
+                else if category.Products.length < 2
+                    li= category.Products[0].name
+                else if category.Products.length < 3
+                    li= category.Products[0].name
+                    li= category.Products[1].name
+                else 
+                    li= category.Products[0].name
+                    li= category.Products[1].name
+                    li= category.Products[2].name
             
 
 
