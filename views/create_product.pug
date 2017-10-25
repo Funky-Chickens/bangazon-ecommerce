@@ -1,25 +1,27 @@
 extends index.pug
 
 block content
-    form(method='POST', action=`/product`)
 
-        label(for="productCategory") Product Category:
-        select(name="productCategory", required)
+    .createProd
+        form(method='POST', action=`/products`)
 
-            option
-            each cat in cats
-                option #{cat.name}
-        br
-        label(for="name") Name: 
-        input(type="string", name="name", required)
-        br
-        label(for="price") Price:
-        input(type="number", step="0.01" name="price", required)
-        br
-        label(for="description") Description: 
-        input(type="string", name="description", required)
-        br
-        label(for="quantity_avail") Quantity:
-        input(type="number", name="quantity_avail", required)
+            label(for="productCategory") Product Category:
+            select(name="productCategory", required)
 
-        button(type="submit") Submit
+                option
+                each cat in cats
+                    option #{cat.name}
+            br
+            label(for="name") Name: 
+            input(type="string", name="name", required)
+            br
+            label(for="price") Price:
+            input(type="number", step="0.01" name="price", required)
+            br
+            label(for="description") Description: 
+            input(type="string", name="description", required)
+            br
+            label(for="quantity_avail") Quantity:
+            input(type="number", name="quantity_avail", required)
+
+            button(type="submit") Submit

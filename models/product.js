@@ -12,8 +12,8 @@ module.exports = (sequelize, DataTypes) => {
   Product.classMethods = {
       associate: function(models) {
         Product.belongsTo(models.Category, { 
-          foreignKey: 'category_id',
-          as: "Category" });
+          foreignKey: 'category_id'
+         });
         Product.belongsTo(models.User, { 
           foreignKey: 'user_id',
           as: "Seller_id" });
