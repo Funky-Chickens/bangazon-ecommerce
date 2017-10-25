@@ -9,8 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     seller_id: DataTypes.INTEGER
   }, {timestamps: false});
   
-  Product.classMethods = {
-      associate: function(models) {
+  Product.associate = (models) => {
         Product.belongsTo(models.Category, { 
           foreignKey: 'category_id'
          });
@@ -21,6 +20,5 @@ module.exports = (sequelize, DataTypes) => {
           through:'ProductOrders'
         });
       }
-    }
   return Product;
 };

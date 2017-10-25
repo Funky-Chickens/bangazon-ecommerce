@@ -6,8 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     order_date: DataTypes.DATE
   }, {timestamps: false});
 
-  Order.classMethods = {
-      associate: function(models) {
+  Order.associate= (models) => {
         Order.belongsTo(models.User, {
           foreignKey: 'user_id',
           as: "Buyer" });
@@ -17,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
         Order.belongsToMany(models.Product, {
           through:'ProductOrders'
         });
-      }
     }
   return Order;
 };

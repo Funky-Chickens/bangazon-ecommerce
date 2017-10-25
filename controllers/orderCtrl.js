@@ -3,13 +3,17 @@
 module.exports.getOrder = (req, res, next) => {
     console.log("hiya!", req.session.passport.user)
     const {Order, Product} = req.app.get('models');
-    Order.findOne({
-        where:{buyer_id:req.session.passport.user.id}//get order based on uid
+    Order.findAll({
+        where:{buyer_id:req.session.passport.user.id},//get order based on uid
+        include: [{ 
+            model: Product,
+            as: 'ProductOrders' //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
+        }]
     })
     .then((oneOrder)=>{
         console.log("oneOrder", oneOrder)
         console.log("order id?", oneOrder.dataValues.id);
-        if (!oneOrder || !oneOrder.dataValues.payment_id){ //if no order
+        if (!oneOrder || oneOrder.dataValues.payment_id){ //if no order
             next()
         }else{
             res.render('cart', oneOrder.dataValues.id);
