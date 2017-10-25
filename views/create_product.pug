@@ -1,9 +1,9 @@
 extends index.pug
 
 block content
-    div(class="createProduct")
-        H1 Create a product to be sold
-        form(method='POST', action=`/product`)
+
+    .createProd
+        form(method='POST', action=`/products`)
 
             label(for="productCategory") Product Category:
             select(name="productCategory", required)
@@ -23,5 +23,4 @@ block content
             br
             label(for="quantity_avail") Quantity:
             input(type="number", name="quantity_avail", required)
-
             button(type="submit") Submit

@@ -9,6 +9,7 @@ var session = require('express-session');
 
 module.exports.renderProductCreateForm = (req, res, next) => {
     const { Category } = req.app.get('models');
+    console.log("hello");
     Category.findAll() 
     .then( (categories) => {
         let cats = categories.map( (cat) => {
@@ -36,7 +37,7 @@ module.exports.addProduct = (req, res, next) => {
         })
     })
     .then( (result) => {
-      res.status(200).redirect('/product/create');
+      res.status(200).redirect('/products/create');
     })
     .catch( (err) => {
        res.status(500).json(err)

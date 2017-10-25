@@ -19,7 +19,7 @@ body {
     display: inline;
 }
 
-.loginForm {
+.loginForm, .createProd {
         position: fixed; /* or absolute */
         top: 33%;
         left: 33%;
