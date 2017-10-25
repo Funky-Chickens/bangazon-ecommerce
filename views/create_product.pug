@@ -2,9 +2,13 @@ extends index.pug
 
 block content
     form(method='POST', action=`/product`)
-        label(for="product-category") Product Category:
-        select(name="product-category")
-            option VariablesToBeLoopedOver
+
+        label(for="productCategory") Product Category:
+        select(name="productCategory")
+
+            option ------
+            each cat in cats
+                option #{cat.name}
         br
         label(for="name") Name: 
         input(type="string", name="name", required)

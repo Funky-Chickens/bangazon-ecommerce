@@ -3,8 +3,6 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getCategories } = require('../controllers/categoryCtrl');
-
 router.get('/', (req, res, next) => {
   res.render('index');
 });
