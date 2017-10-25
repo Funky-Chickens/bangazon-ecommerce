@@ -1,4 +1,5 @@
 'use strict';
+
 const passport = require('passport');
 
 // creating new users
@@ -50,13 +51,9 @@ module.exports.login = (req, res, next) => {
       if (err) { return next(err) }
       console.log("authenticated. Rerouting to welcome!", user);
       req.flash('welcomeBackMsg',`Welcome back, `);
-      res.redirect('/welcome');
+      res.redirect('/');
     });
   })(req, res, next);
-};
-
-module.exports.welcome = (req, res, next) => {
-  res.render('welcome');
 };
 
 // logging out
