@@ -5,7 +5,7 @@ var session = require('express-session');
 
 // getProductsList //(also need to get by category & based on search & get a count)
 // addProduct
-module.exports.getProductDetail = (req, res, next)=>{ 
+module.exports.getProductDetail = (req, res, next)=>{
     console.log("user?", req.session.passport.user);
     const {Product, Order} = req.app.get('models');
     let prod;//make product data available throughout function
@@ -18,14 +18,14 @@ module.exports.getProductDetail = (req, res, next)=>{
                 buyer_id:req.session.passport.user.id
         }})
     .then((oneOrder)=>{
-        console.log("oneOrder?", oneOrder); 
-        res.render('product_detail', {
+        console.log("oneOrder?", oneOrder);
+        res.render('product_detail', { //render product_detail pug page with detail info -gm
             id:prod.id,
             name: prod.name,
             description:prod.description,
             price:prod.price,
             quantity_avail: prod.quantity_avail,
-            order_id: oneOrder ? oneOrder.dataValues.id : oneOrder //to pass along the order id for the pug template conditional
+            order_id: oneOrder ? oneOrder.dataValues.id : oneOrder //to pass along the order_id for the pug template conditional
             //if the order id exists, use first condition, if not, use second in pug
             //-jmr, cm
           });
@@ -33,7 +33,7 @@ module.exports.getProductDetail = (req, res, next)=>{
         })
     })
 }
-//openOrder.order_id?
+
 
 module.exports.renderProductCreateForm = (req, res, next) => {
     const { Category } = req.app.get('models');

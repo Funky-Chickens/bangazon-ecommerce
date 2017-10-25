@@ -5,11 +5,11 @@ const router = Router();
 
 const { getOrder, addOrder, updateOrder, deleteOrder, addProductOrder, deleteProductOrder } = require('../controllers/orderCtrl');
 
-router.put('/order/:id', getOrder);
+router.get('/order', getOrder);
 
-// router.post('/order', addOrder);
+router.post('/order', addOrder);
 
-// router.put('/order/:id', updateOrder);
+router.put('/order/:id', updateOrder);
 
 // router.delete('/order/:id', deleteOrder);
 
