@@ -4,6 +4,35 @@ const passport = require('passport');
 var session = require('express-session');
 
 // getProductsList //(also need to get by category & based on search & get a count)
+module.exports.getProductList = (req, res, next) => {
+    const {Product} = req.app.get('models');
+    if (req.query.search === undefined || req.query.search === null){
+        Product.findAll() 
+        .then((products) => {
+            let prods = products.map( (prod) => {
+                return prod.dataValues;
+            });
+            res.render('product_list', {prods});
+        })
+        .catch( (err) => {
+          next(err); 
+        });
+    }
+    else {
+        Product.findAll({Where: {search: req.query.search}})        
+        .then((products) => {
+            let prods = products.filter( (prod) => {
+                let titles = prod.dataValues.name.toLowerCase();
+                let searchName = req.query.search.toLowerCase();
+                if(titles.includes(`${searchName}`)) {
+                return prod.dataValues;
+                }
+          });
+          res.render('product_list', {prods});
+        });
+    }
+    
+  };
 // addProduct
 module.exports.getProductDetail = (req, res, next)=>{
     const {Product, Order} = req.app.get('models');

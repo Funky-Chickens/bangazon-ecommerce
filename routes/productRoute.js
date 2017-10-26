@@ -1,9 +1,16 @@
 'use strict';
 
-const { Router } = require('express');
+const {
+    Router
+} = require('express');
 const router = Router();
 
-const { getProductList, addProduct, getProductDetail, renderProductCreateForm } = require('../controllers/productCtrl');
+const {
+    getProductList,
+    addProduct,
+    getProductDetail,
+    renderProductCreateForm
+} = require('../controllers/productCtrl');
 
 //protect routes
 
@@ -11,6 +18,8 @@ const { getProductList, addProduct, getProductDetail, renderProductCreateForm } 
 
 router.get('/products/create', renderProductCreateForm);
 router.post('/products', addProduct);
+router.get('/products', getProductList);
+
 
 router.get('/products/:id', getProductDetail);
 
