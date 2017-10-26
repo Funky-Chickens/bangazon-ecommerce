@@ -4,19 +4,19 @@
 
 module.exports.getUserDetails = (req, res, next) => {
     const { User, PaymentOptions } = req.app.get('models');
+    console.log('payment option?', PaymentOptions);
     User.findAll(
       {
         include: [{
-          all: true
+          model: PaymentOptions
         }],
         where: {
             id: req.session.passport.user.id
         }
       }) 
     .then( (user) => {
-        console.log("user", user);
         let person = user[0].dataValues
-      res.render('user_detail', {person,
+        res.render('user_detail', {person,
         PaymentOptions: person.PaymentOptions});
     })
     .catch( (err) => {
@@ -26,7 +26,6 @@ module.exports.getUserDetails = (req, res, next) => {
 
   module.exports.postPaymentOption = (req, res, next) => {
     const { PaymentOptions } = req.app.get('models');
-    console.log("?", PaymentOptions);
     PaymentOptions.create({
       payment_name:req.body.payment_name,
       account:req.body.account,
