@@ -22,9 +22,9 @@ module.exports.getProductList = (req, res, next) => {
         Product.findAll({Where: {search: req.query.search}})        
         .then((products) => {
             let prods = products.filter( (prod) => {
-                let queryname = prod.dataValues.name;
-                let titles = queryname.toLowerCase();
-                if(titles.includes(`${req.query.search}`)) {
+                let titles = prod.dataValues.name.toLowerCase();
+                let searchName = req.query.search.toLowerCase();
+                if(titles.includes(`${searchName}`)) {
                 return prod.dataValues;
                 }
           });
