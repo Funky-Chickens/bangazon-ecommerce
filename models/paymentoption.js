@@ -5,13 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     account: DataTypes.INTEGER,
     payment_name: DataTypes.STRING
   }, {timestamps: false});
-  
+
   PaymentOption.associate = (models) => {
-        PaymentOption.belongsTo(models.User, { 
-          foreignKey: 'buyer_id',
+        PaymentOption.belongsTo(models.User, {
+          foreignKey: 'id',
           as: "Buyer_id" });
         PaymentOption.hasMany(models.Order, {
-          foreignKey: 'payment_id'
+          foreignKey: 'id'
         });
     }
   return PaymentOption;

@@ -9,10 +9,21 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       buyer_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          // Note the plural. Referencing the table?
+          model: 'Users',
+          key: 'id'
+        }
       },
       payment_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          // Note the plural. Referencing the table?
+          model: 'PaymentOptions',
+          key: 'id'
+        }
       },
       order_date: {
         type: Sequelize.DATE

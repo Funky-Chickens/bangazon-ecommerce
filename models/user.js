@@ -14,17 +14,17 @@ module.exports = function(sequelize, DataTypes) {
     start_date: DataTypes.DATE,
     last_login: DataTypes.DATE
   }, {timestamps: false});
-  
+
   User.associate = (models) => {
-        User.hasMany(models.PaymentOption, { 
+        User.hasMany(models.PaymentOption, {
           foreignKey: 'buyer_id',
         });
         User.hasMany(models.Order, {
-          foreignKey: 'user_id'
+          foreignKey: 'buyer_id'
         });
         User.hasMany(models.Product, {
-          foreignKey: 'user_id',
-          as: 'Seller_id'
+          foreignKey: 'id',
+          as: 'seller_id'
         });
     }
 
