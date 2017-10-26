@@ -58,7 +58,6 @@ module.exports.updateOrder = (req, res, next)=>{ //-gm
 //TODO deleteProductOrder
 
 module.exports.addProductOrder = (req, res, next) => {
-<<<<<<< HEAD
     console.log("hiya from addProductOrder")
     const {Order, Product} = req.app.get('models');
     console.log("order id? inside add product order", req.params.id)
@@ -67,7 +66,3 @@ module.exports.addProductOrder = (req, res, next) => {
 
 
 }
-=======
-
-} //(put product in cart here?)
->>>>>>> master
