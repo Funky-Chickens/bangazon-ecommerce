@@ -6,7 +6,7 @@ var session = require('express-session');
 // getProductsList //(also need to get by category & based on search & get a count)
 module.exports.getProductList = (req, res, next) => {
     const {Product} = req.app.get('models');
-    if (req.query.search === undefined || req.query.search === null){
+    if (req.query.search === undefined || req.query.search === null){//if no search terms, get all
         Product.findAll() 
         .then((products) => {
             let prods = products.map( (prod) => {
@@ -15,16 +15,16 @@ module.exports.getProductList = (req, res, next) => {
             res.render('product_list', {prods});
         })
         .catch( (err) => {
-          next(err); 
+          next(err);
         });
     }
-    else {
-        Product.findAll({Where: {search: req.query.search}})        
+    else {//if search terms entered, filter down by term entered in search bar
+        Product.findAll({Where: {search: req.query.search}})
         .then((products) => {
             let prods = products.filter( (prod) => {
-                let titles = prod.dataValues.name.toLowerCase();
+                let titles = prod.dataValues.name.toLowerCase();//toLowerCase makes sure the terms match accurately
                 let searchName = req.query.search.toLowerCase();
-                if(titles.includes(`${searchName}`)) {
+                if(titles.includes(`${searchName}`)) { //string method .includes
                 return prod.dataValues;
                 }
           });
