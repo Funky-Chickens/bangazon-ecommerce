@@ -1,29 +1,28 @@
 {
     "productOrders": [
       {
-        "order_id": 1,
-        "product_id": 1
+        "OrderId": 1,
+        "ProductId": 1
       },
       {
-        "order_id": 2,
-        "product_id": 2
+        "OrderId": 2,
+        "ProductId": 2
       },
       {
-
-        "order_id": 1,
-        "product_id": 3
+        "OrderId": 1,
+        "ProductId": 3
       },
       {
-        "order_id": 2,
-        "product_id": 1
+        "OrderId": 2,
+        "ProductId": 1
       },
       {
-        "order_id": 4,
-        "product_id": 2
+        "OrderId": 4,
+        "ProductId": 2
       },
       {
-        "order_id": 5,
-        "product_id": 4
+        "OrderId": 5,
+        "ProductId": 4
       }
     ]
   }

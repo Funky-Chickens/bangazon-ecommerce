@@ -2,5 +2,27 @@ extends index.pug
 
 block content
 
-//need to view order for a user, view user payment options, add a new payment option, 
-//add payment to an order, delete product from order, cancel order
+    //- each product
+
+    //- payment type drop down
+    form
+        label(for="paymentType") Payment Method:
+        select(name="paymentType", required)
+            option variablesToEach
+        button(type="submit") Submit Order
+        button Cancel Order
+
+
+    //- add a payment -> route 
+    
+
+    //- cancel order button
+
+    //- pay button > patch payment option
+    
+
+
+
+
+//- //need to view order for a user, view user payment options, add a new payment option, 
+//- //add payment to an order, delete product from order, cancel order

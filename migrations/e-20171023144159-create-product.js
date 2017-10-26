@@ -19,6 +19,24 @@ module.exports = {
       },
       quantity_avail: {
         type: Sequelize.INTEGER
+      },
+      seller_id: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          // Note the plural. Referencing the table?
+          model: 'Users',
+          key: 'id'
+        }
+      },
+      category_id: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          // Note the plural. Referencing the table?
+          model: 'Categories',
+          key: 'id'
+        }
       }
     });
   },
