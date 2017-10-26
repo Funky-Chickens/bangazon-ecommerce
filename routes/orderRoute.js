@@ -13,7 +13,7 @@ router.put('/order/:id', updateOrder);
 
 // router.delete('/order/:id', deleteOrder);
 
-router.get('/order/:id', addProductOrder);//joins with pug form, product/order controllers, and main.js click event
+router.post('/order/:id', addProductOrder);//joins with pug form, product/order controllers, and main.js click event
 
 
 // router.delete('/order/:id', deleteProductOrder);

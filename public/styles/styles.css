@@ -46,3 +46,7 @@ float: right;
 .productItem {
 border: 2px solid black;
 }
+
+.hidden {
+    display:none;
+}
