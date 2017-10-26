@@ -7,11 +7,11 @@ block content
             each product in prods
                 div(class="col-md-3 productItem")
                     h2 #{product.name}
-                    h3 #{product.price}
-                    h3 #{product.description}
-                    h3 #{product.quantity_avail}
+                    h3 $#{product.price}
+                    h6 #{product.description}
+                    h3 available: #{product.quantity_avail}
                     <br>
-                    
+            
                 
 
 
