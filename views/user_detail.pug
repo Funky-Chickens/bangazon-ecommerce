@@ -4,9 +4,15 @@ block content
     .createProd
         p ID: #{person.id} <br> Name: #{person.first_name} #{person.last_name} <br>Address: #{person.street_address}<br>#{person.city}, #{person.state} #{person.zip}<br>Phone: #{person.phone}<br>Email: #{person.email}<br>
 
-        //- ul Payment Options
-        //-     each payment in PaymentOptions
-        //-         li #{payment.dataValues.payment_name} #{payment.dataValues.account}
+        ul Payment Options
+            each payment in PaymentOption
+                li #{payment.dataValues.payment_name} #{payment.dataValues.account}
+                    //- each order in Order
+                    //-     if order.dataValues.payment_id !== payment.dataValues.id
+                            
+                    form(method='POST' action='user?_method=DELETE')
+                        input(type='hidden', name='id',  value=`${payment.dataValues.id}`)
+                        button(type='submit') X
 
         
         h1 Add a Payment Type

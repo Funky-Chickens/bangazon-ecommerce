@@ -3,12 +3,11 @@
 // updateUser
 
 module.exports.getUserDetails = (req, res, next) => {
-    const { User, PaymentOptions } = req.app.get('models');
-    console.log('payment option?', PaymentOptions);
+    const { User, PaymentOption, Order } = req.app.get('models');
     User.findAll(
       {
         include: [{
-          model: PaymentOptions
+          all: true
         }],
         where: {
             id: req.session.passport.user.id
@@ -17,7 +16,8 @@ module.exports.getUserDetails = (req, res, next) => {
     .then( (user) => {
         let person = user[0].dataValues
         res.render('user_detail', {person,
-        PaymentOptions: person.PaymentOptions});
+        PaymentOption: person.PaymentOptions,
+        Order: person.Orders});
     })
     .catch( (err) => {
       next(err); 
@@ -25,8 +25,8 @@ module.exports.getUserDetails = (req, res, next) => {
   };
 
   module.exports.postPaymentOption = (req, res, next) => {
-    const { PaymentOptions } = req.app.get('models');
-    PaymentOptions.create({
+    const { PaymentOption } = req.app.get('models');
+    PaymentOption.create({
       payment_name:req.body.payment_name,
       account:req.body.account,
       buyer_id: req.session.passport.user.id
@@ -36,5 +36,18 @@ module.exports.getUserDetails = (req, res, next) => {
     })
     .catch( (err) => {
        res.status(500).json(err)
+    })
+  }
+
+  module.exports.removeUserPaymentOption = (req, res, next) => {
+    const { User, PaymentOption } = req.app.get('models');
+    console.log("test");
+    PaymentOption.destroy({
+      where: {
+        id: req.body.id
+      }
+    })
+    .then((result) => {
+      res.redirect('/user');
     })
   }
