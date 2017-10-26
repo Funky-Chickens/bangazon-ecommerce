@@ -25,25 +25,25 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
         order_date: date,
         createdAt:null,
         updatedAt:null
-      })
-      .then( (result) => {
-        res.redirect(`/order/${result.dataValues.id}`); //redirect here to /order/:id for productorders join table to be updated?
-      })
-      .catch( (err) => {
-         res.status(500).json(err)
-      });
+    })
+    .then((order)=>{
+        console.log("order", order);
+        //do a get by id using order
+        return Order.findById(order[0])
+    })
+        .then((order)=>{
+            return order.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
+        })
+        .then((data)=>{
+            console.log(data);
+            req.flash('addMessage', 'Product has been added to cart' );
+            res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
+        })
+    .catch( (err) => {
+        res.status(500).json(err)
+    });
 
 };
-
-module.exports.addProductOrder = (req, res, next) => {
-    // console.log("hiya from addProductOrder")
-    // const {Order, Product} = req.app.get('models');
-    // console.log("order id? inside add product order", req.params.id)
-    // console.log('req.body', req.body)
-    // console.log("prodObj inside add productorder", prodObj)
-
-
-}
 
 //put
 module.exports.updateOrder = (req, res, next)=>{ //-gm
@@ -58,12 +58,21 @@ module.exports.updateOrder = (req, res, next)=>{ //-gm
         updatedAt:null
     }, {where:{id: req.params.id}})
     .then((order)=>{
-        // console.log("order in update order", order);
-        res.status(200).send();//redirect to where?
-      })
-      .catch( (err) => {
+        console.log("order", order);
+        //do a get by id using order
+        return Order.findById(order[0])
+    })
+        .then((order)=>{
+            return order.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
+        })
+        .then((data)=>{
+            console.log(data);
+            req.flash('addMessage', 'Product has been added to cart' );
+            res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
+        })
+    .catch( (err) => {
         next(err);
-      });
+    });
 }
 // TODO deleteOrder
 
