@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      order_id:{
+      OrderId:{
         type:Sequelize.INTEGER,
         allowNull:false,
         references:{
@@ -19,7 +19,7 @@ module.exports = {
         onUpdate:'cascade',
         onDelete:'cascade'
       },
-      product_id:{
+      ProductId:{
         type:Sequelize.INTEGER,
         allowNull:false,
         references:{
@@ -28,8 +28,14 @@ module.exports = {
         },
         onUpdate:'cascade',
         onDelete:'cascade'
+      },
+      createdAt: {
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        type: Sequelize.DATE
       }
-    })
+    });
   },
 
   down: (queryInterface, Sequelize) => {
