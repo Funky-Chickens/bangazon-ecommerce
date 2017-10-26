@@ -4,9 +4,9 @@ block content
     .createProd
         p ID: #{person.id} <br> Name: #{person.first_name} #{person.last_name} <br>Address: #{person.street_address}<br>#{person.city}, #{person.state} #{person.zip}<br>Phone: #{person.phone}<br>Email: #{person.email}<br>
 
-        ul Payment Options
-            each payment in PaymentOptions
-                li #{payment.dataValues.payment_name} #{payment.dataValues.account}
+        //- ul Payment Options
+        //-     each payment in PaymentOptions
+        //-         li #{payment.dataValues.payment_name} #{payment.dataValues.account}
 
         
         h1 Add a Payment Type
