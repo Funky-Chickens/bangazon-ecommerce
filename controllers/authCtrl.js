@@ -9,17 +9,14 @@ module.exports.displayRegister = (req, res) => {
 
 module.exports.register = (req, res, next) => {
   if (req.body.password === req.body.confirmation) {
-    console.log('Trying to register new user!!!!!');
 
     // first argument is name of the passport strategy we created in passport-strat.js
     passport.authenticate('local-signup', (err, user, msgObj) => {
-      console.log("Where are we? session.js", user );
       if (err) {  console.log(err); } //or return next(err)
       if (!user) { return res.render('register', msgObj); }
       // Go ahead and login the new user once they are signed up
       req.logIn(user, (err) => {
         if (err) { return next(err); }
-        console.log("authenticated. Rerouting to welcome page!" );
         // Save a msg in a cookie whose value will be added to req
         // using https://www.npmjs.com/package/express-flash-2 docs, but installed express-flash
         req.flash('registerMsg', `Thanks for signing up, ${user.first_name}!`);
@@ -49,7 +46,6 @@ module.exports.login = (req, res, next) => {
 
     req.logIn(user, err => {
       if (err) { return next(err) }
-      console.log("authenticated. Rerouting to welcome!", user);
       req.flash('welcomeBackMsg',`Welcome back, `);
       res.redirect('/');
     });

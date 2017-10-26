@@ -30,3 +30,19 @@ body {
 .logout {
 float: right;
 }
+
+.createProduct{
+    position: fixed; /* or absolute */
+    top: 33%;
+    left: 33%;
+}
+
+.productList {
+    position: fixed; /* or absolute */
+    top: 10%;
+
+}
+
+.productItem {
+border: 2px solid black;
+}

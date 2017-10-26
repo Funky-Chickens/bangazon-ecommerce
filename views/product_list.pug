@@ -1,5 +1,17 @@
 extends index.pug
 
 block content
+    .productList
+      h1 Products
+        div(class="row productItems")
+            each product in prods
+                div(class="col-md-3 productItem")
+                    h2 #{product.name}
+                    h3 $#{product.price}
+                    h6 #{product.description}
+                    h3 available: #{product.quantity_avail}
+                    <br>
+            
+                
 
-//show products based on search with links to detail
+
