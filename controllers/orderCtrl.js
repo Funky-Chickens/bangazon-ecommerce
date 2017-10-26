@@ -4,11 +4,9 @@ module.exports.getOrder = (req, res, next) => {
     console.log("hiya!", req.session.passport.user)
     const {Order, Product} = req.app.get('models');
     Order.findAll({
-        where:{buyer_id:req.session.passport.user.id},//get order based on uid
-        include: [{ 
-            model: Product,
-            as: 'ProductOrders' //you can also include individual tables, but because of the join table in between, this include all will allow us to have access to an object with every related property
-        }]
+        include: [
+            Product
+        ]
     })
     .then((oneOrder)=>{
         console.log("oneOrder", oneOrder)
