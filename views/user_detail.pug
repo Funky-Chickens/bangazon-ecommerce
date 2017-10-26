@@ -1,5 +1,23 @@
 extends index.pug
 
 block content
+    .createProd
+        p ID: #{person.id} <br> Name: #{person.first_name} #{person.last_name} <br>Address: #{person.street_address}<br>#{person.city}, #{person.state} #{person.zip}<br>Phone: #{person.phone}<br>Email: #{person.email}<br>
 
-//user detail with option to edit account including adding/deleting payment option
+        ul Payment Options
+            each payment in PaymentOptions
+                li #{payment.dataValues.payment_name} #{payment.dataValues.account}
+
+        
+        h1 Add a Payment Type
+        form(method='POST', action=`/user`)
+            label(for="payment_name") Payment Name:
+            input(type="text", name="payment_name", required)
+            br
+            label(for="account") Account Number:
+            input(type="text", name="account", required)
+            br
+            button(type="submit" id="submitComp") Submit
+
+
+//- user detail with option to edit account including adding/deleting payment option
