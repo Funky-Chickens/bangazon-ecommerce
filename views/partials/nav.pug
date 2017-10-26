@@ -4,9 +4,9 @@ div(class="row")
                 a(class="nav-link active" href="/categories") Categories
                 a(class="nav-link" href="/products") All Products
         div(class="col-md-4")
-                form
-                    input(type="text" placeholder="Search for a prouct" name="search")
-                    button(class="nav-link" formaction="/products") SEARCH
+                form(method='GET', action=`/products`, )
+                    input(type="text" placeholder="Search for a prouct" name="search" required)
+                    button(class="nav-link" formaction="/products" type="submit") SEARCH
         div(class="col-md-4")
             if !session.passport
                 a(class="nav-link active" href="/login") Login
@@ -14,6 +14,7 @@ div(class="row")
             if session.passport
                 a(class="nav-link" href="/order") View Cart
                 a(class="nav-link active" href="products/create") Sell
+                a(class='nav-link' href='user') My Account
                 span Welcome, #{session.passport.user.first_name}!
                 form(method="POST")
                     button(class="logout" type="submit" formaction="/logout") logout
