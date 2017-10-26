@@ -3,18 +3,16 @@
 module.exports.getOrder = (req, res, next) => {
     console.log("hiya!", req.session.passport.user)
     const {Order, Product} = req.app.get('models');
-    Order.findOne({
-        where:{buyer_id:req.session.passport.user.id}//get order based on uid
-    })
+    Order.findAll({raw: true, include: [{all: true}]})
     .then((oneOrder)=>{
         console.log("oneOrder", oneOrder)
-        console.log("order id?", oneOrder.dataValues.id);
-        if (!oneOrder || !oneOrder.dataValues.payment_id){ //if no order
-            next()
-        }else{
-            res.render('cart', oneOrder.dataValues.id);
-        }
-    })
+        // console.log("order id?", oneOrder.dataValues.id);
+        // if (!oneOrder || oneOrder.payment_id){ //if no order
+        //     next()
+        // }else{
+        //     res.render('cart', oneOrder.dataValues.id);
+        // }
+    });
 }
 
 //post new order to db
@@ -35,9 +33,9 @@ module.exports.addOrder = (req, res, next) =>{
       })
       .catch( (err) => {
          res.status(500).json(err)
-      })
+      });
 
-}
+};
 
 //put
 module.exports.updateOrder = (req, res, next)=>{
@@ -62,5 +60,5 @@ module.exports.updateOrder = (req, res, next)=>{
 
 // deleteProductOrder
 module.exports.addProductOrder = (req, res, next) => {
-    
+
 } //(put product in cart here?)
