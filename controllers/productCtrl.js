@@ -90,10 +90,12 @@ module.exports.addProduct = (req, res, next) => {
     const user = req.session.passport.user // get the user from session.passport
     const { Product, Category } = req.app.get('models');
     Category.findOne({ //get the associated category id, using the category name from the submit form
-       where: {name: req.body.productCategory} 
+       where: {name: req.body.productCategory}
     })
     .then( (category) => {
         let catId = category.dataValues.id;
+        console.log("catId?", catId);
+        console.log("seller id?", user.id);
         return Product.create({
         category_id: catId, //pass category ID in to submit object
         price: req.body.price,
@@ -104,6 +106,7 @@ module.exports.addProduct = (req, res, next) => {
         })
     })
     .then( (result) => {
+        console.log("result in add product?", result);
       res.status(200).redirect('/products/create');
     })
     .catch( (err) => {
