@@ -17,7 +17,6 @@ module.exports.getOrder = (req, res, next) => {
     })
     .then( (data) => {
         if (data.length < 1) {
-            console.log("No active orders found");
             req.flash('emptyCart', 'You have no items in your cart');
             res.render('cart', { messages: req.flash('emptyCart')})
         } else {
@@ -35,8 +34,7 @@ module.exports.getOrder = (req, res, next) => {
 }
 
 //post new order to db
-module.exports.addOrder = (req, res, next) =>{
-    console.log("hello from add order");
+module.exports.addOrder = (req, res, next) =>{ //-gm
     const {Order, Product} = req.app.get('models');
     let date= new Date();
     Order.create({
@@ -45,39 +43,47 @@ module.exports.addOrder = (req, res, next) =>{
         order_date: date,
         createdAt:null,
         updatedAt:null
-      })
-      .then( (result) => {
-        console.log("result of add order to order table", result);//needs to return the lastID of what was posted so we can use that value?
-         res.status(200); //redirect here to /order?
-      })
-      .catch( (err) => {
-         res.status(500).json(err)
-      })
-
+    })
+    .then((order)=>{
+        //do a get by id using order
+        return Order.findById(parseInt(order.dataValues.id))
+    })
+    .then((oneOrder)=>{
+        return oneOrder.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
+    })
+    .then((data)=>{
+        res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
+    })
+    .catch( (err) => {
+        res.status(500).json(err)
+    });
 }
 
 //put
-module.exports.updateOrder = (req, res, next)=>{
+module.exports.updateOrder = (req, res, next)=>{ //-gm
     const {Order, Product} = req.app.get('models');
-    console.log("hello from update order");
     Order.update({
         buyer_id:req.session.passport.user.id,
-        payment_id: req.body.payment_id,//origin of payment info?
+        payment_id: req.body.payment_id,
         order_date: req.body.order_date,
         createdAt:null,
         updatedAt:null
     }, {where:{id: req.params.id}})
     .then((order)=>{
-        console.log("order in update order", order);
-        res.status(200).send();
-      })
-      .catch( (err) => {
+        //do a get by id
+        return Order.findById(req.params.id)
+    })
+    .then((order)=>{
+        return order.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
+    })
+    .then((data)=>{
+        res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
+    })
+    .catch( (err) => {
         next(err);
-      });
+    });
 }
-// deleteOrder
+// TODO deleteOrder
 
-// deleteProductOrder
-module.exports.addProductOrder = (req, res, next) => {
-    
-} //(put product in cart here?)
+//TODO deleteProductOrder
+

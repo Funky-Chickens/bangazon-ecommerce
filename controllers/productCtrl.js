@@ -6,7 +6,7 @@ var session = require('express-session');
 // getProductsList //(also need to get by category & based on search & get a count)
 module.exports.getProductList = (req, res, next) => {
     const {Product} = req.app.get('models');
-    if (req.query.search === undefined || req.query.search === null){
+    if (req.query.search === undefined || req.query.search === null){//if no search terms, get all
         Product.findAll() 
         .then((products) => {
             let prods = products.map( (prod) => {
@@ -15,58 +15,68 @@ module.exports.getProductList = (req, res, next) => {
             res.render('product_list', {prods});
         })
         .catch( (err) => {
-          next(err); 
+          next(err);
         });
     }
-    else {
-        Product.findAll({Where: {search: req.query.search}})        
+    else {//if search terms entered, filter down by term entered in search bar
+        Product.findAll({Where: {search: req.query.search}})
         .then((products) => {
             let prods = products.filter( (prod) => {
-                let titles = prod.dataValues.name.toLowerCase();
+                let titles = prod.dataValues.name.toLowerCase();//toLowerCase makes sure the terms match accurately
                 let searchName = req.query.search.toLowerCase();
-                if(titles.includes(`${searchName}`)) {
+                if(titles.includes(`${searchName}`)) { //string method .includes
                 return prod.dataValues;
                 }
           });
           res.render('product_list', {prods});
         });
     }
-    
   };
 // addProduct
 module.exports.getProductDetail = (req, res, next)=>{
-    console.log("user?", req.session.passport.user);
     const {Product, Order} = req.app.get('models');
     let prod;//make product data available throughout function
-    Product.findById(parseInt(req.params.id))//find one product by id passed in click event -gm
+    Product.findById(parseInt(req.params.id), {raw: true})
+    //find one product by id passed in click event -gm
     .then( (foundProd) =>{
-        prod=foundProd.dataValues;
-        console.log("prod", prod)
+        prod=foundProd;
+        console.log("prod", foundProd)
         return Order.findOne({
+            raw:true,
             where:{
                 buyer_id:req.session.passport.user.id
         }})
     .then((oneOrder)=>{
-        console.log("oneOrder?", oneOrder);
-        res.render('product_detail', { //render product_detail pug page with detail info -gm
-            id:prod.id,
-            name: prod.name,
-            description:prod.description,
-            price:prod.price,
-            quantity_avail: prod.quantity_avail,
-            order_id: oneOrder ? oneOrder.dataValues.id : oneOrder //to pass along the order_id for the pug template conditional
-            //if the order id exists, use first condition, if not, use second in pug
-            //-jmr, cm
-          });
+        if(oneOrder){
+            console.log("oneOrder?", oneOrder.id);
+            res.render('product_detail', { //render product_detail pug page with detail info -gm
+                id:prod.id,
+                name: prod.name,
+                description:prod.description,
+                price:prod.price,
+                quantity_avail: prod.quantity_avail,
+                order_id: oneOrder.id //to pass along the order_id for the pug template conditional
+                //if the order id exists, use first condition, if not, use second in pug
+                //-jmr, cm
+              });
+        }else{
+            res.render('product_detail', { //render product_detail pug page with detail info -gm
+                id:prod.id,
+                name: prod.name,
+                description:prod.description,
+                price:prod.price,
+                quantity_avail: prod.quantity_avail,
+                order_id: null
+              });
+        }
 
         })
     })
 }
 
-
 module.exports.renderProductCreateForm = (req, res, next) => {
     const { Category } = req.app.get('models');
-    console.log("hello");
+    // console.log("hello");
     Category.findAll() 
     .then( (categories) => {
         let cats = categories.map( (cat) => {

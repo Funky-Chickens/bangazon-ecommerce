@@ -2,13 +2,17 @@ extends index.pug
 
 block content
     .singleProduct
+        if addMessage
+            h2 #{addMessage}
         if order_id
-            form(action="/order/#{order_id}", method="put")
+            form(action='/order/'+order_id+'?_method=PUT', method="POST")
                 ul(id="detailProd")
-                    li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
+                    li(class="singleProdList" id="singleProd" value= id)  Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
+                    input(class='hidden'  name ="prod_id" value=id)
                     button(type="submit" id="addToCart") Add To Cart
         else
-            form(action="/order/", method="post")
+            form(action="/order/", method="POST")
                 ul(id="detailProd")
                     li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
+                    input(class='hidden' name="prod_id" value=id)
                     button(type="submit" id="addToCart") Add To Cart
