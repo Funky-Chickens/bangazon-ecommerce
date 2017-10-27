@@ -20,7 +20,7 @@ body {
 }
 
 
-.singleProduct ,.loginForm, .createProd {
+.singleProduct, .loginForm, .createProd, .cart {
 
         position: fixed; /* or absolute */
         top: 33%;

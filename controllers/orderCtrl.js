@@ -1,17 +1,29 @@
 'use strict'
 
+//Looks for orders with no payment_id. If no orders are open, displays "you have no items in your cart".
+//If there is an order, displays, the products on the order. -jmr
 module.exports.getOrder = (req, res, next) => {
-    console.log("hiya!", req.session.passport.user)
-    const {Order, Product} = req.app.get('models');
-    Order.findAll({raw: true, include: [{all: true}]})
-    .then((oneOrder)=>{
-        console.log("oneOrder", oneOrder)
-        // console.log("order id?", oneOrder.dataValues.id);
-        // if (!oneOrder || oneOrder.payment_id){ //if no order
-        //     next()
-        // }else{
-        //     res.render('cart', oneOrder.dataValues.id);
-        // }
+    let user = req.session.passport.user;
+    const { Order, Product } = req.app.get('models');
+    Order.findAll({
+        raw: true,
+        where: {
+            buyer_id: user.id,
+            payment_id: null
+        },
+        include: [{
+            model: Product
+        }]
+    })
+    .then( (data) => {
+        if (data.length < 1) {
+            console.log("No active orders found");
+            req.flash('emptyCart', 'You have no items in your cart');
+            res.render('cart', { messages: req.flash('emptyCart')})
+        } else {
+            console.log("Showing cart");
+            res.render('cart', { data });
+        }
     });
 }
 
@@ -33,9 +45,9 @@ module.exports.addOrder = (req, res, next) =>{
       })
       .catch( (err) => {
          res.status(500).json(err)
-      });
+      })
 
-};
+}
 
 //put
 module.exports.updateOrder = (req, res, next)=>{
@@ -60,5 +72,5 @@ module.exports.updateOrder = (req, res, next)=>{
 
 // deleteProductOrder
 module.exports.addProductOrder = (req, res, next) => {
-
+    
 } //(put product in cart here?)
