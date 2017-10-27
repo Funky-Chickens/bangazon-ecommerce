@@ -16,7 +16,7 @@ module.exports.getOrder = (req, res, next) => {
         }]
     })
     .then( (data) => {
-        if (data.length < 1) {
+        if (data.length < 1 || data[0]['Products.id'] === null) {
             console.log("No active orders found");
             req.flash('emptyCart', 'You have no items in your cart');
             res.render('cart', { messages: req.flash('emptyCart')})
