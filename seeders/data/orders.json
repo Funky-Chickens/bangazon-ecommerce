@@ -24,6 +24,16 @@
         "buyer_id": 4,
         "payment_id": 4,
         "order_date": "2017-08-25T23:59:03.244Z"
+      },
+      {
+        "buyer_id": 6,
+        "payment_id": null,
+        "order_date": "2017-08-25T23:59:03.244Z"
+      },
+      {
+        "buyer_id": 6,
+        "payment_id": 5,
+        "order_date": "2017-08-25T23:59:03.244Z"
       }
     ]
   }

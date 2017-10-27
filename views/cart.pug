@@ -5,12 +5,27 @@ block content
     //- each product
 
     //- payment type drop down
-    form
-        label(for="paymentType") Payment Method:
-        select(name="paymentType", required)
-            option variablesToEach
-        button(type="submit") Submit Order
-        button Cancel Order
+    if messages && messages.length
+        .cart
+            h3 #{messages}
+    else
+        .cart
+            div(class="row productItems")
+                each product in data
+                    div(class="col-md-3 productItem")
+                        h2 #{product['Products.name']}
+                        h3 $#{product['Products.price']}
+                    h6 #{product['Products.description']}
+            form
+                label(for="paymentType") Payment Method:
+                if paymentOpts.length
+                    select(name="productCategory", required)
+                        option
+                        each pay in paymentOpts
+                            option #{pay.payment_name} #{pay.account}
+                button Add Payment Method
+                button(type="submit") Submit Order
+                button Cancel Order
 
 
     //- add a payment -> route 

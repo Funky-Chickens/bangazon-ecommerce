@@ -1,5 +1,6 @@
 'use strict'
 
+<<<<<<< HEAD
 module.exports.getOrder = (req, res, next) => {//-gm/jmr
     const {Order, Product} = req.app.get('models');
     Order.findAll({raw: true, include: [{all: true}]})
@@ -11,6 +12,39 @@ module.exports.getOrder = (req, res, next) => {//-gm/jmr
         // }else{
         //     res.render('cart', oneOrder.dataValues.id);
         // }
+=======
+//Looks for orders with no payment_id. If no orders are open, displays "you have no items in your cart".
+//If there is an order, displays, the products on the order. -jmr
+module.exports.getOrder = (req, res, next) => {
+    let user = req.session.passport.user;
+    const { Order, Product, PaymentOption } = req.app.get('models');
+    Order.findAll({
+        raw: true,
+        where: {
+            buyer_id: user.id,
+            payment_id: null
+        },
+        include: [{
+            model: Product
+        }]
+    })
+    .then( (data) => {
+        if (data.length < 1) {
+            console.log("No active orders found");
+            req.flash('emptyCart', 'You have no items in your cart');
+            res.render('cart', { messages: req.flash('emptyCart')})
+        } else {
+            PaymentOption.findAll({
+                raw: true,
+                where: { buyer_id: user.id }
+            })
+            .then( (paymentOpts) => {
+                console.log("pays", paymentOpts)
+                console.log("Showing cart");
+                res.render('cart', { data, paymentOpts });
+            });
+        }
+>>>>>>> master
     });
 }
 
@@ -25,6 +59,7 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
         order_date: date,
         createdAt:null,
         updatedAt:null
+<<<<<<< HEAD
     })
     .then((order)=>{
         console.log("order", order);
@@ -42,8 +77,18 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
     .catch( (err) => {
         res.status(500).json(err)
     });
+=======
+      })
+      .then( (result) => {
+        console.log("result of add order to order table", result);//needs to return the lastID of what was posted so we can use that value?
+         res.status(200); //redirect here to /order?
+      })
+      .catch( (err) => {
+         res.status(500).json(err)
+      })
+>>>>>>> master
 
-};
+}
 
 //put
 module.exports.updateOrder = (req, res, next)=>{ //-gm
@@ -78,4 +123,11 @@ module.exports.updateOrder = (req, res, next)=>{ //-gm
 
 //TODO deleteProductOrder
 
+<<<<<<< HEAD
 
+=======
+// deleteProductOrder
+module.exports.addProductOrder = (req, res, next) => {
+    
+} //(put product in cart here?)
+>>>>>>> master
