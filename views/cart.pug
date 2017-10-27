@@ -18,8 +18,12 @@ block content
                     h6 #{product['Products.description']}
             form
                 label(for="paymentType") Payment Method:
-                select(name="paymentType", required)
-                    option variablesToEach
+                if paymentOpts.length
+                    select(name="productCategory", required)
+                        option
+                        each pay in paymentOpts
+                            option #{pay.payment_name} #{pay.account}
+                button Add Payment Method
                 button(type="submit") Submit Order
                 button Cancel Order
 

@@ -4,7 +4,7 @@
 //If there is an order, displays, the products on the order. -jmr
 module.exports.getOrder = (req, res, next) => {
     let user = req.session.passport.user;
-    const { Order, Product } = req.app.get('models');
+    const { Order, Product, PaymentOption } = req.app.get('models');
     Order.findAll({
         raw: true,
         where: {
@@ -21,8 +21,15 @@ module.exports.getOrder = (req, res, next) => {
             req.flash('emptyCart', 'You have no items in your cart');
             res.render('cart', { messages: req.flash('emptyCart')})
         } else {
-            console.log("Showing cart");
-            res.render('cart', { data });
+            PaymentOption.findAll({
+                raw: true,
+                where: { buyer_id: user.id }
+            })
+            .then( (paymentOpts) => {
+                console.log("pays", paymentOpts)
+                console.log("Showing cart");
+                res.render('cart', { data, paymentOpts });
+            });
         }
     });
 }
