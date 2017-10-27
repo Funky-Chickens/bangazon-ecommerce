@@ -21,7 +21,7 @@ app.set('models', require('./models')); //pulls in models/index.js by default. I
 // const { Computer } = req.app.get('models');
 
 app.set('view engine', 'pug');
-app.locals.globalWow = "Express is, like, MAGIC"; //If we end up needing some value to be available to every pug template, look into using something like this that can be accessed in the templates just like any variable we pass directly to the template.
+app.locals.LogIn = "Please Log In"; //If we end up needing some value to be available to every pug template, look into using something like this that can be accessed in the templates just like any variable we pass directly to the template.
 
 let routes = require('./routes/');
 

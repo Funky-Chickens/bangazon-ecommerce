@@ -15,7 +15,7 @@ block content
                     div(class="col-md-3 productItem")
                         h2 #{product['Products.name']}
                         h3 $#{product['Products.price']}
-                    h6 #{product['Products.description']}
+                        h6 #{product['Products.description']}
             form
                 label(for="paymentType") Payment Method:
                 if paymentOpts.length
