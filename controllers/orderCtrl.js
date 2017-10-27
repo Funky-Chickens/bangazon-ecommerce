@@ -1,18 +1,5 @@
 'use strict'
 
-<<<<<<< HEAD
-module.exports.getOrder = (req, res, next) => {//-gm/jmr
-    const {Order, Product} = req.app.get('models');
-    Order.findAll({raw: true, include: [{all: true}]})
-    .then((oneOrder)=>{
-        // console.log("oneOrder", oneOrder)
-        // console.log("order id?", oneOrder.dataValues.id);
-        // if (!oneOrder || oneOrder.payment_id){ //if no order
-        //     next()
-        // }else{
-        //     res.render('cart', oneOrder.dataValues.id);
-        // }
-=======
 //Looks for orders with no payment_id. If no orders are open, displays "you have no items in your cart".
 //If there is an order, displays, the products on the order. -jmr
 module.exports.getOrder = (req, res, next) => {
@@ -44,7 +31,6 @@ module.exports.getOrder = (req, res, next) => {
                 res.render('cart', { data, paymentOpts });
             });
         }
->>>>>>> master
     });
 }
 
@@ -59,7 +45,6 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
         order_date: date,
         createdAt:null,
         updatedAt:null
-<<<<<<< HEAD
     })
     .then((order)=>{
         console.log("order", order);
@@ -77,16 +62,6 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
     .catch( (err) => {
         res.status(500).json(err)
     });
-=======
-      })
-      .then( (result) => {
-        console.log("result of add order to order table", result);//needs to return the lastID of what was posted so we can use that value?
-         res.status(200); //redirect here to /order?
-      })
-      .catch( (err) => {
-         res.status(500).json(err)
-      })
->>>>>>> master
 
 }
 
@@ -123,11 +98,3 @@ module.exports.updateOrder = (req, res, next)=>{ //-gm
 
 //TODO deleteProductOrder
 
-<<<<<<< HEAD
-
-=======
-// deleteProductOrder
-module.exports.addProductOrder = (req, res, next) => {
-    
-} //(put product in cart here?)
->>>>>>> master
