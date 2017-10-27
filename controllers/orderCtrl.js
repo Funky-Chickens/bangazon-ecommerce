@@ -47,22 +47,20 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
         updatedAt:null
     })
     .then((order)=>{
-        console.log("order", order);
+        console.log('order from add order?', order.dataValues.id)
         //do a get by id using order
-        return Order.findById(order[0])
+        return Order.findById(parseInt(order.dataValues.id))
     })
     .then((oneOrder)=>{
+        console.log('oneOrder from add order', oneOrder);
         return oneOrder.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
     })
     .then((data)=>{
-        console.log(data);
-        // req.flash('addMessage', 'Product has been added to cart' );
         res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
     })
     .catch( (err) => {
         res.status(500).json(err)
     });
-
 }
 
 //put

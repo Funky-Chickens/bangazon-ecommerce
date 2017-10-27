@@ -14,5 +14,5 @@ block content
             form(action="/order/", method="POST")
                 ul(id="detailProd")
                     li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
-                    input(class='hidden' id=id value=id)
+                    input(class='hidden' name="prod_id" value=id)
                     button(type="submit" id="addToCart") Add To Cart
