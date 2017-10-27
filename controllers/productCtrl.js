@@ -105,9 +105,21 @@ module.exports.addProduct = (req, res, next) => {
         seller_id: user.id
         })
     })
-    .then( (result) => {
+    .then((result) => {
         console.log("result in add product?", result);
-      res.status(200).redirect('/products/create');
+        //redirect to view of product detail
+        Product.findById(result.dataValues.id)
+        .then((product)=>{
+            console.log("in res render of add product", product)
+            res.render('product_detail', { //render product_detail pug page with detail info -gm
+                id:product.id,
+                name: product.name,
+                description:product.description,
+                price:product.price,
+                quantity_avail: product.quantity_avail,
+                order_id: null
+              });
+        })
     })
     .catch( (err) => {
        res.status(500).json(err)
