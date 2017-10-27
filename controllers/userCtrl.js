@@ -32,7 +32,7 @@ module.exports.getUserDetails = (req, res, next) => {
       buyer_id: req.session.passport.user.id
     })
     .then( (result) => {
-      res.status(200).redirect('/user');
+      next();
     })
     .catch( (err) => {
        res.status(500).json(err)
