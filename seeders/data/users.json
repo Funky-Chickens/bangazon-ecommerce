@@ -69,6 +69,20 @@
         "password": "jnjnjnjn",
         "start_date": "2016-12-25T23:59:03.244Z",
         "last_login": "2017-11-25T23:59:03.244Z"
+      },
+      {
+        "first_name": "j",
+        "last_name": "r",
+        "username": "fifafofashley",
+        "phone": "144-555-5555",
+        "street_address": "100 eenieweenie St.",
+        "city": "Crapola",
+        "state": "MI",
+        "zip": 55621,
+        "email": "monahajt@gmail.com",
+        "password": "123",
+        "start_date": "2016-12-25T23:59:03.244Z",
+        "last_login": "2017-11-25T23:59:03.244Z"
       }
     ]
   }
