@@ -31,14 +31,14 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
         //do a get by id using order
         return Order.findById(order[0])
     })
-        .then((order)=>{
-            return order.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
-        })
-        .then((data)=>{
-            console.log(data);
-            req.flash('addMessage', 'Product has been added to cart' );
-            res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
-        })
+    .then((oneOrder)=>{
+        return oneOrder.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
+    })
+    .then((data)=>{
+        console.log(data);
+        req.flash('addMessage', 'Product has been added to cart' );
+        res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
+    })
     .catch( (err) => {
         res.status(500).json(err)
     });
