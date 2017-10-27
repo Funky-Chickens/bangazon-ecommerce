@@ -56,7 +56,7 @@ module.exports.addOrder = (req, res, next) =>{ //-gm
     })
     .then((data)=>{
         console.log(data);
-        req.flash('addMessage', 'Product has been added to cart' );
+        // req.flash('addMessage', 'Product has been added to cart' );
         res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
     })
     .catch( (err) => {
@@ -70,6 +70,7 @@ module.exports.updateOrder = (req, res, next)=>{ //-gm
     const {Order, Product} = req.app.get('models');
     console.log("hello from update order");
     console.log("update order req.body", req.body)
+    console.log ("user id?", req.params.id)
     Order.update({
         buyer_id:req.session.passport.user.id,
         payment_id: req.body.payment_id,
@@ -78,15 +79,15 @@ module.exports.updateOrder = (req, res, next)=>{ //-gm
         updatedAt:null
     }, {where:{id: req.params.id}})
     .then((order)=>{
-        console.log("order", order);
+        console.log("order", req.params.id);
         //do a get by id using order
-        return Order.findById(order[0])
+        return Order.findById(req.params.id)
     })
         .then((order)=>{
+            console.log("order inside update order", order);
             return order.addProduct(req.body.prod_id)//magic built-in sequelize methods to add product to order & update join table?
         })
         .then((data)=>{
-            console.log(data);
             req.flash('addMessage', 'Product has been added to cart' );
             res.redirect(`/products/${req.body.prod_id}`);//redirect back to product detail view
         })

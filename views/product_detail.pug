@@ -3,7 +3,7 @@ extends index.pug
 block content
     .singleProduct
         if addMessage
-            h2=addMessage
+            h2 #{addMessage}
         if order_id
             form(action='/order/'+order_id+'?_method=PUT', method="POST")
                 ul(id="detailProd")

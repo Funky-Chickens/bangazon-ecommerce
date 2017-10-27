@@ -47,17 +47,28 @@ module.exports.getProductDetail = (req, res, next)=>{
                 buyer_id:req.session.passport.user.id
         }})
     .then((oneOrder)=>{
-        console.log("oneOrder?", oneOrder.id);
-        res.render('product_detail', { //render product_detail pug page with detail info -gm
-            id:prod.id,
-            name: prod.name,
-            description:prod.description,
-            price:prod.price,
-            quantity_avail: prod.quantity_avail,
-            order_id: oneOrder.id //to pass along the order_id for the pug template conditional
-            //if the order id exists, use first condition, if not, use second in pug
-            //-jmr, cm
-          });
+        if(oneOrder){
+            console.log("oneOrder?", oneOrder.id);
+            res.render('product_detail', { //render product_detail pug page with detail info -gm
+                id:prod.id,
+                name: prod.name,
+                description:prod.description,
+                price:prod.price,
+                quantity_avail: prod.quantity_avail,
+                order_id: oneOrder.id //to pass along the order_id for the pug template conditional
+                //if the order id exists, use first condition, if not, use second in pug
+                //-jmr, cm
+              });
+        }else{
+            res.render('product_detail', { //render product_detail pug page with detail info -gm
+                id:prod.id,
+                name: prod.name,
+                description:prod.description,
+                price:prod.price,
+                quantity_avail: prod.quantity_avail,
+                order_id: null
+              });
+        }
 
         })
     })
