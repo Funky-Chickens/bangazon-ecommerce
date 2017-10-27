@@ -9,12 +9,12 @@ module.exports.getCategories = (req, res, next) => {
       include: [{
         model: Product
       }]
-    }) 
+    })
   .then( (categories) => {
     res.render('categories', {categories,
       Product: categories.Product});
   })
   .catch( (err) => {
-    next(err); 
+    next(err);
   });
 };
