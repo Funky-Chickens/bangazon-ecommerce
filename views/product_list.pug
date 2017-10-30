@@ -10,8 +10,9 @@ block content
                     h3 $#{product.price}
                     h6 #{product.description}
                     h3 available: #{product.quantity_avail}
-                    a(class="seemore" href="/products/"+product.id) see more
-                    <br>
+                    if session.passport
+                        a(class="seemore" href="/products/"+product.id) see more
+                        <br>
             
                 
 

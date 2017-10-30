@@ -20,7 +20,7 @@ module.exports.getProductList = (req, res, next) => {
     }
     else {//if search terms entered, filter down by term entered in search bar
         Product.findAll({Where: {search: req.query.search}})
-        .then((products) => {
+        .then( (products) => {
             let prods = products.filter( (prod) => {
                 let titles = prod.dataValues.name.toLowerCase();//toLowerCase makes sure the terms match accurately
                 let searchName = req.query.search.toLowerCase();
@@ -32,23 +32,23 @@ module.exports.getProductList = (req, res, next) => {
         });
     }
   };
+
 // addProduct
-module.exports.getProductDetail = (req, res, next)=>{
-    const {Product, Order} = req.app.get('models');
+module.exports.getProductDetail = (req, res, next) => {
+    const { Product, Order } = req.app.get('models');
     let prod;//make product data available throughout function
     Product.findById(parseInt(req.params.id), {raw: true})
     //find one product by id passed in click event -gm
-    .then( (foundProd) =>{
-        prod=foundProd;
-        console.log("prod", foundProd)
-        return Order.findOne({
+    .then( (foundProd) => {
+        prod = foundProd;
+        Order.findOne({
             raw:true,
             where:{
-                buyer_id:req.session.passport.user.id
-        }})
-    .then((oneOrder)=>{
-        if(oneOrder){
-            console.log("oneOrder?", oneOrder.id);
+                buyer_id: req.session.passport ? req.session.passport.user.id : null
+            }
+    })
+    .then( (oneOrder) => {
+        if(oneOrder) {
             res.render('product_detail', { //render product_detail pug page with detail info -gm
                 id:prod.id,
                 name: prod.name,
@@ -76,7 +76,6 @@ module.exports.getProductDetail = (req, res, next)=>{
 
 module.exports.renderProductCreateForm = (req, res, next) => {
     const { Category } = req.app.get('models');
-    // console.log("hello");
     Category.findAll() 
     .then( (categories) => {
         let cats = categories.map( (cat) => {
@@ -88,14 +87,12 @@ module.exports.renderProductCreateForm = (req, res, next) => {
 
 module.exports.addProduct = (req, res, next) => {
     const user = req.session.passport.user // get the user from session.passport
-    const { Product, Category } = req.app.get('models');
+    const { Product, Category, Order } = req.app.get('models');
     Category.findOne({ //get the associated category id, using the category name from the submit form
        where: {name: req.body.productCategory}
     })
     .then( (category) => {
         let catId = category.dataValues.id;
-        console.log("catId?", catId);
-        console.log("seller id?", user.id);
         return Product.create({
         category_id: catId, //pass category ID in to submit object
         price: req.body.price,
@@ -106,10 +103,17 @@ module.exports.addProduct = (req, res, next) => {
         })
     })
     .then((result) => {
-        console.log("result in add product?", result);
-        //redirect to view of product detail
+        let product
         Product.findById(result.dataValues.id)
-        .then((product)=>{
+        .then( (prod) => {
+            product = prod
+            return Order.findOne({
+                raw:true,
+                where:{
+                    buyer_id: req.session.passport ? req.session.passport.user.id : null
+                }
+        })
+        .then( (order) => {
             console.log("in res render of add product", product)
             res.render('product_detail', { //render product_detail pug page with detail info -gm
                 id:product.id,
@@ -117,8 +121,9 @@ module.exports.addProduct = (req, res, next) => {
                 description:product.description,
                 price:product.price,
                 quantity_avail: product.quantity_avail,
-                order_id: null
+                order_id: order ? order.id : null
               });
+            })
         })
     })
     .catch( (err) => {
