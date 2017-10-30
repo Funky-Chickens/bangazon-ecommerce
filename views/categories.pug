@@ -3,22 +3,27 @@ extends index.pug
 block content
     .createProd
         h1 Categories
-            
         ul
             each category in categories
                 h2 #{category.name} (#{category.Products.length})
                 if category.Products.length == 0
                     li No Products in this Category at this time
                 else if category.Products.length < 2
-                    li= category.Products[0].name
+                    a(href="/products/"+category.Products[0].id)
+                        li= category.Products[0].name
                 else if category.Products.length < 3
-                    li= category.Products[0].name
-                    li= category.Products[1].name
-                else 
-                    li= category.Products[0].name
-                    li= category.Products[1].name
-                    li= category.Products[2].name
-            
+                    a(href="/products/"+category.Products[0].id)
+                        li=category.Products[0].name
+                    a(href="/products/"+category.Products[1].id)
+                        li=category.Products[1].name
+                else
+                    a(href="/products/"+category.Products[0].id)
+                        li=category.Products[0].name
+                    a(href="/products/"+category.Products[1].id)
+                        li=category.Products[1].name
+                    a(href="/products/"+category.Products[2].id)
+                        li=category.Products[2].name
+
 
 
 //- show categories with 1st 3 products in category and count of the # of products in it
