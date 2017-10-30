@@ -41,11 +41,12 @@ module.exports.getProductDetail = (req, res, next) => {
     //find one product by id passed in click event -gm
     .then( (foundProd) => {
         prod = foundProd;
-        return Order.findOne({
+        Order.findOne({
             raw:true,
             where:{
-                buyer_id:req.session.passport.user.id
-        }})
+                buyer_id: req.session.passport ? req.session.passport.user.id : null
+            }
+    })
     .then( (oneOrder) => {
         if(oneOrder) {
             res.render('product_detail', { //render product_detail pug page with detail info -gm

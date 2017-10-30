@@ -15,4 +15,5 @@ block content
                 ul(id="detailProd")
                     li(class="singleProdList" id="singleProd" value= id) Name: #{name}<br>Description: #{description}<br> Quantity Available: #{quantity_avail}<br> Price: $#{price}
                     input(class='hidden' name="prod_id" value=id)
-                    button(type="submit" id="addToCart") Add To Cart
+                    if session.passport 
+                        button(type="submit" id="addToCart") Add To Cart
