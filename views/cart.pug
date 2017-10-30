@@ -23,9 +23,10 @@ block content
                         option
                         each pay in paymentOpts
                             option #{pay.payment_name} #{pay.account}
-                button Add Payment Method
                 button(type="submit") Submit Order
-                button Cancel Order
+            button Cancel Order
+            a(href="/user")
+                button Add Payment Method
 
 
     //- add a payment -> route 

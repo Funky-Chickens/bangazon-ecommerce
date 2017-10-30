@@ -87,7 +87,7 @@ module.exports.renderProductCreateForm = (req, res, next) => {
 
 module.exports.addProduct = (req, res, next) => {
     const user = req.session.passport.user // get the user from session.passport
-    const { Product, Category } = req.app.get('models');
+    const { Product, Category, Order } = req.app.get('models');
     Category.findOne({ //get the associated category id, using the category name from the submit form
        where: {name: req.body.productCategory}
     })
@@ -103,9 +103,17 @@ module.exports.addProduct = (req, res, next) => {
         })
     })
     .then((result) => {
-        //redirect to view of product detail
+        let product
         Product.findById(result.dataValues.id)
-        .then((product)=>{
+        .then( (prod) => {
+            product = prod
+            return Order.findOne({
+                raw:true,
+                where:{
+                    buyer_id: req.session.passport ? req.session.passport.user.id : null
+                }
+        })
+        .then( (order) => {
             console.log("in res render of add product", product)
             res.render('product_detail', { //render product_detail pug page with detail info -gm
                 id:product.id,
@@ -113,8 +121,9 @@ module.exports.addProduct = (req, res, next) => {
                 description:product.description,
                 price:product.price,
                 quantity_avail: product.quantity_avail,
-                order_id: null
+                order_id: order ? order.id : null
               });
+            })
         })
     })
     .catch( (err) => {
